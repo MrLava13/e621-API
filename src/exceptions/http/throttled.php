@@ -1,6 +1,6 @@
 <?php
 namespace e621\exceptions\http;
 
-use \e621\exceptions\http;
+use \e621\exceptions\httpException;
 
-class throttled extends http {}
+class throttled extends httpException {}
