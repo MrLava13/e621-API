@@ -10,23 +10,23 @@ class Auth {
     }
 
     /**
-     * Sets/Fetches the username
+     * Sets and/or Fetches the username
      * 
      * @param string|null The username if setting, null if fetching
-     * @return void|string
+     * @return string
      */
 
     public static function user(string $user = null){
-        if(!is_null($user)) static::$user = $user;
-        ini_set("user_agent", "phpE621/0.1 (by mrlavathirteen on e621, ran by " . $user . ")");
+        if(!is_null($user))
+            static::$user = $user;
         return static::$user;
     }
 
     /**
-     * Sets/Fetches the api key
+     * Sets and/or Fetches the api key
      * 
      * @param string|null The api key if setting, null if fetching
-     * @return void|string
+     * @return string
      */
 
     public static function api(string $key = null){
