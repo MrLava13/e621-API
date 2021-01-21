@@ -17,8 +17,7 @@ class Auth {
      */
 
     public static function user(string $user = null){
-        if(!is_null($user))
-            static::$user = $user;
+        if(!is_null($user)) static::$user = $user;
         return static::$user;
     }
 
