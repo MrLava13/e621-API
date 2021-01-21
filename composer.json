@@ -2,7 +2,9 @@
     "name": "mrlava13/e621-api",
     "description": "A simple gateway to the API for e621",
     "require": {
-        "php": ">=7.3.0"
+        "php": ">=7.3.0",
+        "ext-curl": "*",
+        "ext-fileinfo": "*"
     },
     "autoload": {
         "psr-4": {

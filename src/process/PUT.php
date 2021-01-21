@@ -1,12 +1,12 @@
 <?php
 namespace e621\process;
 
-class PATCH {
+class PUT {
     use traits;
     public static function s(string $url, $content = []){
         return static::send(
             $url,
-            "PATCH",
+            "PUT",
             $content
         );
     }

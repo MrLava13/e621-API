@@ -8,6 +8,9 @@ namespace e621\process;
 class DELETE {
     use traits;
     public static function s(string $url){
-        return static::send($url, false, static::gen("DELETE"));
+        return static::send(
+            $url,
+            "DELETE"
+        );
     }
 }
