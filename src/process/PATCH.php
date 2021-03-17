@@ -1,12 +1,11 @@
 <?php
 namespace e621\process;
 
-class PATCH {
-    use traits;
-    public static function s(string $url, $content = []){
-        return static::send(
+class PATCH extends process {
+    public static function s(string $url, array $content = []){
+        return self::send(
             $url,
-            "PATCH",
+            'PATCH',
             $content
         );
     }

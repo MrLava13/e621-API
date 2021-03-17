@@ -1,12 +1,11 @@
 <?php
 namespace e621\process;
 
-class PUT {
-    use traits;
-    public static function s(string $url, $content = []){
-        return static::send(
+class PUT extends process {
+    public static function s(string $url, array $content = []){
+        return self::send(
             $url,
-            "PUT",
+            'PUT',
             $content
         );
     }

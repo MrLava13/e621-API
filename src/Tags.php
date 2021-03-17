@@ -3,7 +3,7 @@ namespace e621;
 use \e621\process\GET;
 use Error;
 class Tags {
-    private static $url = "https://e621.net/tags.json";
+    private static $url = 'https://e621.net/tags.json';
 
     /**
      * Fetch the page of tags
@@ -14,7 +14,7 @@ class Tags {
      */
 
     public static function page(int $page, array $options = []){
-        return new returnObject(GET::s(static::$url,array_merge($options, ["page"=>$page])));
+        return new returnObject(GET::s(static::$url, array_merge($options, ['page'=>$page])));
     }
 
     /**
@@ -26,8 +26,8 @@ class Tags {
      * @return returnObject
      */
 
-    public static function id(int $id, string $sort = "a", array $options = []){
-        if(!in_array($sort, ["a","b"])) throw new Error("Sort can only be `a` or `b`");
-        return new returnObject(GET::s(static::$url,array_merge($options,["page"=>$sort.$id])));
+    public static function id(int $id, string $sort = 'a', array $options = []){
+        if(!in_array($sort, ['a','b'])) throw new Error('Sort can only be `a` or `b`');
+        return new returnObject(GET::s(static::$url,array_merge($options,['page'=>$sort.$id])));
     }
 }

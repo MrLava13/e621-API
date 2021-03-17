@@ -6,10 +6,10 @@ class returnObject {
 
     public function __construct(string $json){
         $array = json_decode($json,true);
-        if(isset($array["posts"]))
-            $this->array = $array["posts"];
-        elseif(isset($array["post"]))
-            $this->array = [$array["post"]];
+        if(isset($array['posts']))
+            $this->array = $array['posts'];
+        elseif(isset($array['post']))
+            $this->array = [$array['post']];
         else
             $this->array = $array;
     }
@@ -26,7 +26,8 @@ class returnObject {
      */
 
     public function fetchArray(){
-        if(!isset($this->array[$this->index])) return false;
+        if(!isset($this->array[$this->index])) 
+            return false;
         $this->index++;
         return $this->array[$this->index - 1];
     }
@@ -60,10 +61,11 @@ class returnObject {
      */
 
     public function getSID(){
-        if(!isset($this->array[0]["id"])) return false;
+        if(!isset($this->array[0]['id'])) 
+            return false;
         foreach($this->array as $v)
-        if(!isset($out) || $v["id"] < $out)
-        $out = $v["id"];
+            if(!isset($out) || $v['id'] < $out)
+                $out = $v['id'];
         return $out;
     }
 
@@ -74,10 +76,11 @@ class returnObject {
      */
 
     public function getLID(){
-        if(!isset($this->array[0]["id"])) return false;
+        if(!isset($this->array[0]['id'])) 
+            return false;
         foreach($this->array as $v)
-        if(!isset($out) || $v["id"] > $out)
-        $out = $v["id"];
+            if(!isset($out) || $v['id'] > $out)
+                $out = $v['id'];
         return $out;
     }
 
@@ -88,9 +91,10 @@ class returnObject {
      */
 
     public function fetchTags(){
-        if(!isset($this->array[$this->index], $this->array[$this->index]["tags"])) return false;
-        foreach($this->array[$this->index]["tags"] as $tags)
-        $out = array_merge($tags, isset($out) ? $out : []);
+        if(!isset($this->array[$this->index], $this->array[$this->index]['tags'])) 
+            return false;
+        foreach($this->array[$this->index]['tags'] as $tags)
+            $out = array_merge($tags, isset($out) ? $out : []);
         return $out;
     }
 }
