@@ -2,12 +2,12 @@
 namespace e621;
 
 class Auth {
-    private static $user = '', $api = '';
+    private static $user, $api;
 
     public function __construct(string $user = null, string $api = null){
-        if(!is_null($user)) 
+        if(isset($user)) 
             static::user($user);
-        if(!is_null($api)) 
+        if(isset($api)) 
             static::api($api);
     }
 
@@ -19,7 +19,7 @@ class Auth {
      */
 
     public static function user(string $user = null){
-        if(!is_null($user)) 
+        if(isset($user)) 
             static::$user = $user;
         return static::$user;
     }
@@ -32,9 +32,9 @@ class Auth {
      */
 
     public static function api(string $key = null){
-        if(is_null($key)) 
-            return static::$api;
-        static::$api = $key;
+        if(isset($key))
+            static::$api = $key;
+        return static::$api;
     }
 
 }

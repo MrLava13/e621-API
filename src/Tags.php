@@ -14,7 +14,7 @@ class Tags {
      */
 
     public static function page(int $page, array $options = []){
-        return new returnObject(GET::s(static::$url, array_merge($options, ['page'=>$page])));
+        return new returnObject(GET::s(static::$url, array_merge($options, ['page' => $page])));
     }
 
     /**
@@ -27,7 +27,8 @@ class Tags {
      */
 
     public static function id(int $id, string $sort = 'a', array $options = []){
-        if(!in_array($sort, ['a','b'])) throw new Error('Sort can only be `a` or `b`');
-        return new returnObject(GET::s(static::$url,array_merge($options,['page'=>$sort.$id])));
+        if(!in_array($sort, ['a', 'b'])) 
+            throw new Error('Sort can only be `a` or `b`');
+        return new returnObject(GET::s(static::$url, array_merge($options, ['page' => $sort . $id])));
     }
 }

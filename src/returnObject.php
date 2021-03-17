@@ -5,7 +5,7 @@ class returnObject {
     private $array, $index = 0;
 
     public function __construct(string $json){
-        $array = json_decode($json,true);
+        $array = json_decode($json, true);
         if(isset($array['posts']))
             $this->array = $array['posts'];
         elseif(isset($array['post']))
