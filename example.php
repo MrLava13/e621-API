@@ -2,23 +2,24 @@
 
 use e621\{exceptions\httpException,Posts,Auth};
 
-require __DIR__."/vendor/autoload.php";
-//new Auth("username", "api_key");
+require __DIR__.'/vendor/autoload.php';
+//new Auth('username', 'api_key');
 
 
 try {
     $info = Posts::page(1, options: [
-        "tags" => [
-            "anthro"
+        'tags' => [
+            'anthro'
         ],
-        "limit" => 10
+        'limit' => 10
     ]);
 
-    while($row = $info->fetchArray()) echo $row["id"]."\n";
+    while($row = $info->fetchArray()) 
+        echo $row['id'] . PHP_EOL;
     
-    echo $info->getSID()." ". $info->getLID();
+    echo $info->getSID() . ' ' . $info->getLID();
 } catch(httpException $e){
-    echo "There was a problem (".$e->getCode()."): \n".$e->getMessage();
+    echo 'There was a problem (' . $e->getCode() . '):' . PHP_EOL . $e->getMessage();
 } catch(Error $e){
-    exit ("Error caught:\n".$e->getMessage());
+    exit ('Error caught:' . PHP_EOL . $e->getMessage());
 }
