@@ -1,8 +1,12 @@
 <?php
+
 namespace e621;
+
 use \e621\process\GET;
 use Error;
-class Tags {
+
+class Tags
+{
     private static $url = 'https://e621.net/tags.json';
 
     /**
@@ -13,7 +17,8 @@ class Tags {
      * @return returnObject
      */
 
-    public static function page(int $page, array $options = []){
+    public static function page(int $page, array $options = [])
+    {
         return new returnObject(GET::s(static::$url, array_merge($options, ['page' => $page])));
     }
 
@@ -26,8 +31,9 @@ class Tags {
      * @return returnObject
      */
 
-    public static function id(int $id, string $sort = 'a', array $options = []){
-        if(!in_array($sort, ['a', 'b'])) 
+    public static function id(int $id, string $sort = 'a', array $options = [])
+    {
+        if (!in_array($sort, ['a', 'b']))
             throw new Error('Sort can only be `a` or `b`');
         return new returnObject(GET::s(static::$url, array_merge($options, ['page' => $sort . $id])));
     }

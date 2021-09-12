@@ -1,21 +1,22 @@
 <?php
+
 namespace e621;
 
 class returnObject {
     private $array, $index = 0;
 
-    public function __construct(string $json){
+    public function __construct(string $json) {
         $array = json_decode($json, true);
-        if(isset($array['posts']))
+        if (isset($array['posts']))
             $this->array = $array['posts'];
-        elseif(isset($array['post']))
+        elseif (isset($array['post']))
             $this->array = [$array['post']];
         else
             $this->array = $array;
     }
 
 
-    public function __toString(): string{
+    public function __toString(): string {
         return json_encode($this->array);
     }
 
@@ -25,8 +26,8 @@ class returnObject {
      * @return array|false
      */
 
-    public function fetchArray(){
-        if(!isset($this->array[$this->index])) 
+    public function fetchArray() {
+        if (!isset($this->array[$this->index]))
             return false;
         $this->index++;
         return $this->array[$this->index - 1];
@@ -36,7 +37,7 @@ class returnObject {
      * Resets the fetchArray
      */
 
-    public function reset(){
+    public function reset() {
         $this->index = 0;
         return true;
     }
@@ -47,7 +48,7 @@ class returnObject {
      * @return int
      */
 
-    public function getCount(){
+    public function getCount() {
         return count($this->array);
     }
 
@@ -60,11 +61,11 @@ class returnObject {
      * @return int|false
      */
 
-    public function getSID(){
-        if(!isset($this->array[0]['id'])) 
+    public function getSID() {
+        if (!isset($this->array[0]['id']))
             return false;
-        foreach($this->array as $v)
-            if(!isset($out) || $v['id'] < $out)
+        foreach ($this->array as $v)
+            if (!isset($out) || $v['id'] < $out)
                 $out = $v['id'];
         return $out;
     }
@@ -75,11 +76,11 @@ class returnObject {
      * @return int|false
      */
 
-    public function getLID(){
-        if(!isset($this->array[0]['id'])) 
+    public function getLID() {
+        if (!isset($this->array[0]['id']))
             return false;
-        foreach($this->array as $v)
-            if(!isset($out) || $v['id'] > $out)
+        foreach ($this->array as $v)
+            if (!isset($out) || $v['id'] > $out)
                 $out = $v['id'];
         return $out;
     }
@@ -90,10 +91,10 @@ class returnObject {
      * @return array|false
      */
 
-    public function fetchTags(){
-        if(!isset($this->array[$this->index], $this->array[$this->index]['tags'])) 
+    public function fetchTags() {
+        if (!isset($this->array[$this->index], $this->array[$this->index]['tags']))
             return false;
-        foreach($this->array[$this->index]['tags'] as $tags)
+        foreach ($this->array[$this->index]['tags'] as $tags)
             $out = array_merge($tags, isset($out) ? $out : []);
         return $out;
     }
