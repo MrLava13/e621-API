@@ -2,30 +2,15 @@
 
 namespace e621\HTTP\APIs;
 
+use e621\HTTP\Method;
+
 interface API
 {
-
-    public function setMethod(string $method);
-
     /**
-     * 
-     * @param string[] $headers 
-     * @return mixed 
-     */
-
-    public function setHeaders(array $headers);
-
-    /**
-     * @param array<string,mixed> $params 
-     * @return mixed 
-     */
-
-    public function setParams(array $params);
-
-    /**
-     * 
+     * @param Method $method
+     * @param string|array $content
      * @return string|false 
      */
 
-    public function get(string $url);
+    public function call(string $url, Method $method, $content = []);
 }

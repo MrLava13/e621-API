@@ -3,38 +3,30 @@
 namespace e621\HTTP\APIs;
 
 use e621\Auth;
+use e621\HTTP\Method;
+use e621\HTTPException;
+
+use function e621\HTTP\methodToString;
 
 class File implements API
 {
 
-    private $headers, $params, $method;
-
-    public function setHeaders(array $headers)
+    public function call(string $url, Method $method, $content = [])
     {
-        $this->headers = $headers;
-    }
-
-    public function setMethod(string $method)
-    {
-        $this->method = strtoupper($method);
-    }
-
-    public function setParams(array $params)
-    {
-        $this->params = $params;
-    }
-
-
-    public function get(string $url)
-    {
-        $out = file_get_contents($url, false, stream_context_create([
+        $context = http_build_query((is_array($content) || !empty($content) ? $content : []));
+        if ($method == Method::GET)
+            $url .= '?' . $context;
+        $out = @file_get_contents($url, false, stream_context_create([
             'http' => [
-                'method' => $this->method,
-                'header' => $this->headers ?? [],
-                'user_agent' => Auth::getUserAgent(),
-                'context' => http_build_query($this->params ?? []),
+                'method' => methodToString($method),
+                'header' => [Auth::generateHeader()],
+                'user_agent' => Auth::generateUserAgent(),
+                'context' => $context,
             ]
         ]));
+        if ($out === false) {
+            throw new HTTPException(isset($http_response_header[0]) ? explode(' ', $http_response_header[0])[1] : 0);
+        }
         return $out;
     }
 }

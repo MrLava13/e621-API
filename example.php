@@ -1,9 +1,11 @@
 <?php
 
-use e621\{exceptions\httpException,Posts,Auth};
+use e621\Auth;
+use e621\HTTPException;
+use e621\Posts\Posts;
 
-require __DIR__.'/vendor/autoload.php';
-//new Auth('username', 'api_key');
+require __DIR__ . '/vendor/autoload.php';
+// Auth::login('username', 'api_key');
 
 
 try {
@@ -14,12 +16,13 @@ try {
         'limit' => 10
     ]);
 
-    while($row = $info->fetchArray()) 
-        echo $row['id'] . PHP_EOL;
-    
+    foreach ($info as $post) {
+        echo $post['id'] . PHP_EOL;
+    }
+
     echo $info->getSID() . ' ' . $info->getLID();
-} catch(httpException $e){
+} catch (HTTPException $e) {
     echo 'There was a problem (' . $e->getCode() . '):' . PHP_EOL . $e->getMessage();
-} catch(Error $e){
-    exit ('Error caught:' . PHP_EOL . $e->getMessage());
+} catch (Exception $e) {
+    echo 'Error caught:' . PHP_EOL . $e->getMessage();
 }

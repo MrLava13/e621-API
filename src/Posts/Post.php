@@ -1,18 +1,21 @@
 <?php
 
-namespace e621;
+namespace e621\Posts;
 
-use e621\exceptions\httpException;
-use \e621\process\{PATCH, GET, POST as httpPOST};
-use Error;
+use e621\HTTP\HTTP;
+use e621\HTTP\Method;
+use e621\Posts\Objects\PostObject;
+use e621\Posts\Objects\PostsReturnObject;
+use Exception;
 
 class Post
 {
-    private static $urls = [
-            'upload' => 'https://e621.net/uploads.json',
-            'post' => 'https://e621.net/posts/'
+    private const
+        URIS = [
+            'upload' => 'uploads.json',
+            'post' => 'posts/'
         ],
-        $convert = [
+        CONVERT = [
             'url' => 'direct_url',
             'parent' => 'parent_id',
             'referer' => 'referer_url',
@@ -23,11 +26,16 @@ class Post
      * Upload a post to e621, it might work, might not... It has **not** been tested yet, but should work if I had read the documentaion correctly
      */
 
-    public static function create(array $data)
+    public static function create(array $data): PostsReturnObject
     {
-        if (count(array_diff_key(['tags' => null, 'rating' => null], $data)) !== 0) throw new Error('Missing required keys');
-        foreach (static::$convert as $o => $n) if (isset($data[$o]))
-            $data[$n] = $data[$o];
+        if (count(array_diff_key(['tags' => null, 'rating' => null], $data)) !== 0) {
+            throw new Exception('Missing required keys');
+        }
+        foreach (self::CONVERT as $o => $n) {
+            if (isset($data[$o])) {
+                $data[$n] = $data[$o];
+            }
+        }
         $post = array_intersect_key(
             $data,
             array_flip([
@@ -40,48 +48,48 @@ class Post
                 'as_pending'
             ])
         );
-        if (isset($data['sources']))
+        if (isset($data['sources'])) {
             $post['source'] = implode(
                 PHP_EOL,
                 (count($data['sources']) > 10 ?
                     array_slice($data['sources'], 0, 10) :
                     $data['sources'])
             );
-        $post['tag_string'] = (is_array($data['tags']) ?
-            implode(' ', $data['tags']) :
-            $data['tags']);
+        }
+        $post['tag_string'] = (is_array($data['tags'])
+            ? implode(' ', $data['tags'])
+            : $data['tags']);
+
         if (isset($data['file'])) {
-            $post['file'] = curl_file_create(realpath($data['file']), \mime_content_type($data['file']), basename($data['file']));
-            if (!isset($post['md5_confirmation']))
+            $post['file'] = curl_file_create(realpath($data['file']), \mime_content_type($data['file']), basename($data['file'])); // TODO: make better
+            if (!isset($post['md5_confirmation'])) {
                 $post['md5_confirmation'] = md5_file($data['file']);
+            }
         } elseif (!isset($post['direct_url']))
-            throw new Error('No file was supplied...');
+            throw new Exception('No file was supplied...');
 
         $out = [];
-        foreach ($post as $name => $value)
+        foreach ($post as $name => $value) {
             $out['upload[' . $name . ']'] = $value;
+        }
 
-        return new returnObject(httpPOST::s(static::$urls['upload'], $post));
+        return new PostsReturnObject(HTTP::fetch(self::URIS['upload'], Method::POST, $post));
     }
 
-    public static function id(int $id)
+    public static function fromID(int $id): PostObject
     {
-        return new returnObject(GET::s(static::$urls['post'] . $id . '.json'));
+        return new PostObject(HTTP::fetch(self::URIS['post'] . $id . '.json', Method::GET));
     }
 
     /**
-     * Update a post on e621, untested function. Hopfully it works
+     * TODO: Only make it update the new keys
      */
 
-    public static function update(int $id, array $data)
+    public static function update(int $id, array $data): PostsReturnObject
     {
-        try {
-            $old = (static::id($id))->fetchArray();
-        } catch (httpException $e) {
-            user_error('Request failed with: \'' . $e->getMessage() . '\'', E_USER_WARNING);
-            return false;
-        }
-        foreach (static::$convert as $o => $n)
+        $old = (self::fromID($id))->getArray();
+
+        foreach (self::CONVERT as $o => $n)
             if (isset($data[$o]))
                 $data[$n] = $data[$o];
 
@@ -102,7 +110,6 @@ class Post
                 //'has_embedded_notes'
             ]))
         );
-
-        return new returnObject(PATCH::s(static::$urls['post'] . '.json', $post));
+        return new PostsReturnObject(HTTP::fetch(self::URIS['post'] . '.json', Method::PATCH, $post));
     }
 }
