@@ -1,7 +1,7 @@
 <?php
 
-namespace e621\Users\Objects;
+namespace E621api\Users\Objects;
 
-use e621\Posts\Objects\PostsReturnObject;
+use E621api\Posts\Objects\PostsReturnObject;
 
 class FavoritesReturnObject extends PostsReturnObject {};

@@ -1,8 +1,8 @@
 <?php
 
-namespace e621\Posts\Objects;
+namespace E621api\Posts\Objects;
 
-use e621\BaseObjects\IterativeObject;
+use E621api\BaseObjects\IterativeObject;
 use Exception;
 
 class PostsReturnObject extends IterativeObject

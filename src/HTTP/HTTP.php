@@ -1,12 +1,12 @@
 <?php
 
-namespace e621\HTTP;
+namespace E621api\HTTP;
 
-use e621\Defaults;
-use e621\HTTP\APIs\API;
-use e621\HTTP\APIs\CURL;
-use e621\HTTP\APIs\File;
-use e621\HTTP\Method;
+use E621api\Defaults;
+use E621api\HTTP\APIs\API;
+use E621api\HTTP\APIs\CURL;
+use E621api\HTTP\APIs\File;
+use E621api\HTTP\Method;
 
 class HTTP
 {
@@ -28,7 +28,7 @@ class HTTP
     private static ?int $lastRequest, $ratelimitRate = Defaults::DEFAULT_RATELIMIT;
 
     /**
-     * @var int $ms Ratelimit Rate in ms (should be 1000(ms) to be complient with e621), 0 if you want to disable
+     * @var int $ms Ratelimit Rate in ms (should be 1000(ms) to be complient with E621api), 0 if you want to disable
      */
 
     public static function setRateLimit(int $ms): void

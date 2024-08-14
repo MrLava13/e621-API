@@ -1,6 +1,6 @@
 <?php
 
-namespace e621\Tags\Enum;
+namespace E621api\Tags\Enum;
 
 enum TagStatus
 {

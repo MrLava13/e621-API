@@ -1,10 +1,10 @@
 <?php
 
-namespace e621\HTTP\APIs;
+namespace E621api\HTTP\APIs;
 
-use e621\Auth;
-use e621\HTTP\Method;
-use e621\HTTPException;
+use E621api\Auth;
+use E621api\HTTP\Method;
+use E621api\HTTPException;
 
 
 class File implements API

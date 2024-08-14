@@ -1,9 +1,9 @@
 <?php
 
-namespace e621\Posts;
+namespace E621api\Posts;
 
-use e621\BaseObjects\BasicSearchObject;
-use e621\Posts\Enum\PostOrder;
+use E621api\BaseObjects\BasicSearchObject;
+use E621api\Posts\Enum\PostOrder;
 use ValueError;
 
 class PostSearch extends BasicSearchObject

@@ -1,11 +1,11 @@
 <?php
 
-namespace e621;
+namespace E621api;
 
-use e621\HTTP\HTTP;
-use e621\HTTP\Method;
-use e621\Posts\Objects\PostObject;
-use e621\Posts\Objects\PostResponce;
+use E621api\HTTP\HTTP;
+use E621api\HTTP\Method;
+use E621api\Posts\Objects\PostObject;
+use E621api\Posts\Objects\PostResponce;
 use Exception;
 
 class Post
@@ -29,7 +29,7 @@ class Post
     }
 
     /**
-     * Upload a post to e621, it might work, might not... It has **not** been tested yet, but should work if I had read the documentaion correctly
+     * Upload a post to E621api, it might work, might not... It has **not** been tested yet, but should work if I had read the documentaion correctly
      */
 
     public static function create(array $data): PostResponce

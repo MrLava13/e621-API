@@ -1,6 +1,6 @@
 <?php
 
-namespace e621\Tags\Objects;
+namespace E621api\Tags\Objects;
 
 
 class AliasObject extends TagObject {};

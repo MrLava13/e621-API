@@ -1,7 +1,7 @@
 <?php
 
-namespace e621\Posts\Objects;
+namespace E621api\Posts\Objects;
 
-use e621\BaseObjects\ResponceObject;
+use E621api\BaseObjects\ResponceObject;
 
 class PostResponce extends ResponceObject {}

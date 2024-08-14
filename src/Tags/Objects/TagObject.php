@@ -1,8 +1,8 @@
 <?php
 
-namespace e621\Tags\Objects;
+namespace E621api\Tags\Objects;
 
-use e621\BaseObjects\BasicArrayObject;
+use E621api\BaseObjects\BasicArrayObject;
 
 class TagObject extends BasicArrayObject
 {

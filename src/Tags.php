@@ -1,12 +1,12 @@
 <?php
 
-namespace e621;
+namespace E621api;
 
-use e621\Enum\Alignment;
-use e621\HTTP\HTTP;
-use e621\HTTP\Method;
-use e621\Tags\Objects\TagsReturnObject;
-use e621\Tags\Search\TagSearch;
+use E621api\Enum\Alignment;
+use E621api\HTTP\HTTP;
+use E621api\HTTP\Method;
+use E621api\Tags\Objects\TagsReturnObject;
+use E621api\Tags\Search\TagSearch;
 
 class Tags
 {

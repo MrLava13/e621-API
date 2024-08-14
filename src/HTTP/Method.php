@@ -1,6 +1,6 @@
 <?php
 
-namespace e621\HTTP;
+namespace E621api\HTTP;
 
 enum Method
 {

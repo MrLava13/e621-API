@@ -1,10 +1,10 @@
 <?php
 
-namespace e621\Tags\Search;
+namespace E621api\Tags\Search;
 
-use e621\BaseObjects\BasicSearchObject;
-use e621\Tags\Enum\TagOrder;
-use e621\Tags\Enum\TagStatus;
+use E621api\BaseObjects\BasicSearchObject;
+use E621api\Tags\Enum\TagOrder;
+use E621api\Tags\Enum\TagStatus;
 
 class AliasSearch extends BasicSearchObject {
     protected ?string $name_matches;

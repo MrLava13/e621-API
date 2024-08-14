@@ -1,6 +1,6 @@
 <?php
 
-namespace e621\Posts\Enum;
+namespace E621api\Posts\Enum;
 
 enum PostOrder
 {

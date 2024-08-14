@@ -1,6 +1,6 @@
 <?php
 
-namespace e621\BaseObjects;
+namespace E621api\BaseObjects;
 
 use Exception;
 

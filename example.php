@@ -1,9 +1,9 @@
 <?php
 
-use e621\Auth;
-use e621\HTTPException;
-use e621\Posts;
-use e621\Posts\PostSearch;
+use E621api\Auth;
+use E621api\HTTPException;
+use E621api\Posts;
+use E621api\Posts\PostSearch;
 
 require __DIR__ . '/vendor/autoload.php';
 // Auth::login('username', 'api_key');

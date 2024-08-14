@@ -1,8 +1,8 @@
 <?php
 
-namespace e621\Users\Objects;
+namespace E621api\Users\Objects;
 
-use e621\BaseObjects\BasicArrayObject;
+use E621api\BaseObjects\BasicArrayObject;
 
 class UserObject extends BasicArrayObject
 {

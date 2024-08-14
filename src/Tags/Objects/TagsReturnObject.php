@@ -1,8 +1,8 @@
 <?php
 
-namespace e621\Tags\Objects;
+namespace E621api\Tags\Objects;
 
-use e621\BaseObjects\IterativeObject;
+use E621api\BaseObjects\IterativeObject;
 
 class TagsReturnObject extends IterativeObject
 {

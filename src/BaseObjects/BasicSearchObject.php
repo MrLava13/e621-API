@@ -1,8 +1,8 @@
 <?php
 
-namespace e621\BaseObjects;
+namespace E621api\BaseObjects;
 
-use e621\Enum\Alignment;
+use E621api\Enum\Alignment;
 use Exception;
 
 class BasicSearchObject

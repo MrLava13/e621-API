@@ -1,9 +1,9 @@
 <?php
 
-namespace e621\Tags\Search;
+namespace E621api\Tags\Search;
 
-use e621\BaseObjects\BasicSearchObject;
-use e621\Tags\Enum\TagOrder;
+use E621api\BaseObjects\BasicSearchObject;
+use E621api\Tags\Enum\TagOrder;
 
 class TagSearch extends BasicSearchObject
 {

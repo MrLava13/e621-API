@@ -1,8 +1,8 @@
 <?php
 
-namespace e621\Posts\Objects;
+namespace E621api\Posts\Objects;
 
-use e621\BaseObjects\BasicArrayObject;
+use E621api\BaseObjects\BasicArrayObject;
 use Exception;
 
 class PostObject extends BasicArrayObject

@@ -1,6 +1,6 @@
 <?php
 
-namespace e621;
+namespace E621api;
 
 class Auth
 {

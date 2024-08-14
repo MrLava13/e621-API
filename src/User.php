@@ -1,10 +1,10 @@
 <?php
 
-namespace e621;
+namespace E621api;
 
-use e621\HTTP\HTTP;
-use e621\HTTP\Method;
-use e621\Users\Objects\UserObject;
+use E621api\HTTP\HTTP;
+use E621api\HTTP\Method;
+use E621api\Users\Objects\UserObject;
 
 class User
 {

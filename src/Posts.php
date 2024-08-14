@@ -1,12 +1,12 @@
 <?php
 
-namespace e621;
+namespace E621api;
 
-use e621\Enum\Alignment;
-use e621\HTTP\HTTP;
-use e621\HTTP\Method;
-use e621\Posts\Objects\PostsReturnObject;
-use e621\Posts\PostSearch;
+use E621api\Enum\Alignment;
+use E621api\HTTP\HTTP;
+use E621api\HTTP\Method;
+use E621api\Posts\Objects\PostsReturnObject;
+use E621api\Posts\PostSearch;
 
 class Posts
 {

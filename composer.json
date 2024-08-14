@@ -1,6 +1,6 @@
 {
     "name": "mrlava13/e621-api",
-    "description": "A simple gateway to the API for e621",
+    "description": "A simple gateway to the API for E621",
     "require": {
         "php": ">=8.1.0"
     },
@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "e621\\": "src"
+            "E621api\\": "src"
         }
     }
 }

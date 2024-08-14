@@ -1,8 +1,8 @@
 <?php
 
-namespace e621\Users;
+namespace E621api\Users;
 
-use e621\BaseObjects\BasicSearchObject;
+use E621api\BaseObjects\BasicSearchObject;
 
 class UserSearch extends BasicSearchObject
 {

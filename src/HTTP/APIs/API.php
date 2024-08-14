@@ -1,8 +1,8 @@
 <?php
 
-namespace e621\HTTP\APIs;
+namespace E621api\HTTP\APIs;
 
-use e621\HTTP\Method;
+use E621api\HTTP\Method;
 
 interface API
 {
