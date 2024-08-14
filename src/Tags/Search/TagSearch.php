@@ -13,4 +13,4 @@ class TagSearch extends BasicSearchObject
     protected ?bool $hide_empty = null;
     protected ?bool $has_wiki = null;
     protected ?bool $has_artist = null;
-};
+}

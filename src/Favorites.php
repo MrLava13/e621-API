@@ -14,4 +14,4 @@ class Favorites
     {
         return new FavoritesReturnObject(HTTP::fetch(self::URI, Method::GET, isset($id) ? ['user_id' => $id] : []));
     }
-};
+}

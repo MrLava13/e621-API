@@ -6,7 +6,6 @@ use E621api\Auth;
 use E621api\HTTP\Method;
 use E621api\HTTPException;
 
-
 class File implements API
 {
     public function call(string $url, Method $method, array $content = []): string

@@ -25,10 +25,12 @@ class HTTP
 
     private static ?API $api;
 
-    private static ?int $lastRequest, $ratelimitRate = Defaults::DEFAULT_RATELIMIT;
+    private static ?int $lastRequest;
+    private static ?int $ratelimitRate = Defaults::DEFAULT_RATELIMIT;
 
     /**
-     * @var int $ms Ratelimit Rate in ms (should be 1000(ms) to be complient with E621api), 0 if you want to disable
+     * @var int $ms Ratelimit Rate in ms (should be 1000(ms) to be complient with E621api)
+     * 0 if you want to disable
      */
 
     public static function setRateLimit(int $ms): void
@@ -41,8 +43,8 @@ class HTTP
     }
 
     /**
-     * @param API $api 
-     * @return void 
+     * @param API $api
+     * @return void
      */
 
     public static function useAPI(API $api): void
@@ -53,7 +55,7 @@ class HTTP
     public static function fetch(string $uri, Method $method, ?array $data = null): string
     {
         if (!isset(self::$api)) {
-            self::$api = extension_loaded('curl') ? new CURL : new File;
+            self::$api = extension_loaded('curl') ? new CURL() : new File();
         }
         if (isset(self::$ratelimitRate)) {
             if (isset(self::$lastRequest)) {
@@ -65,6 +67,13 @@ class HTTP
             }
             self::$lastRequest = hrtime(true);
         }
-        return self::$api->call((self::$safemode ? Defaults::SAFE_URL : Defaults::DEFAULT_URL) . $uri, $method, $data ?? []);
+        return self::$api->call(
+            (self::$safemode
+                ? Defaults::SAFE_URL
+                : Defaults::DEFAULT_URL
+            ) . $uri,
+            $method,
+            $data ?? []
+        );
     }
 }

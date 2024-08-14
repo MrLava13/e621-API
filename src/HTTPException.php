@@ -6,7 +6,7 @@ use Exception;
 
 class HTTPException extends Exception
 {
-    function __construct(int $errorCode)
+    public function __construct(int $errorCode)
     {
         match ($errorCode) {
             // 4XX

@@ -47,4 +47,4 @@ enum PostOrder
             PostOrder::DURATION => 'duration'
         };
     }
-};
+}

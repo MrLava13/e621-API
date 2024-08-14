@@ -15,4 +15,4 @@ class UserSearch extends BasicSearchObject
     protected ?bool $can_approve_posts;
     protected ?bool $can_upload_free;
     protected $order;
-};
+}

@@ -12,4 +12,4 @@ enum TagCategory
     case INVALID;
     case META;
     case LORE;
-};
+}

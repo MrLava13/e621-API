@@ -7,4 +7,4 @@ enum PostRating
     case SAFE;
     case QUESTIONABLE;
     case EXPLICIT;
-};
+}

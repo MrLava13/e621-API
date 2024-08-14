@@ -16,4 +16,4 @@ enum TagOrder
             TagOrder::NAME => 'name'
         };
     }
-};
+}

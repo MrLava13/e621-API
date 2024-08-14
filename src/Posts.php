@@ -21,7 +21,7 @@ class Posts
     {
         return self::getResults(PostSearch::make()->setPage($page));
     }
-    
+
     public static function fromID(int $id, Alignment $align = Alignment::After): PostsReturnObject
     {
         return self::getResults(PostSearch::make()->setID($id, $align));

@@ -11,4 +11,4 @@ class Defaults
     public const DEFAULT_URL = 'https://e621.net/';
 
     public const DEFAULT_RATELIMIT = 1000;
-};
+}

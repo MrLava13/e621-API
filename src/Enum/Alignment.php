@@ -2,7 +2,8 @@
 
 namespace E621api\Enum;
 
-enum Alignment {
+enum Alignment
+{
     case After;
     case Before;
-};
+}

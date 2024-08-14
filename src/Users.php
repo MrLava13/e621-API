@@ -23,7 +23,7 @@ class Users
 
     /**
      * Fetch the page of tags
-     * 
+     *
      * @param int $page The page number to get the tags from
      * @return UsersReturnObject
      */
@@ -35,7 +35,7 @@ class Users
 
     /**
      * Fetch a listing of tags from a given id
-     * 
+     *
      * @param int $id The id to search from
      * @param Alignment $sort The method of searching, after or before
      * @return returnObject

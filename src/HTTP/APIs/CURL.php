@@ -22,13 +22,12 @@ class CURL implements API
 
     public function call(string $url, Method $method, array $content = []): string
     {
-        $m = Method::methodToString($method);
         curl_setopt_array($this->curl, [
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_CUSTOMREQUEST => $m,
-            CURLOPT_POST => $m === 'POST',
-            CURLOPT_PUT => $m === 'PUT',
+            CURLOPT_CUSTOMREQUEST => Method::methodToString($method),
+            CURLOPT_POST => $method === Method::POST,
+            CURLOPT_PUT => $method === Method::PUT,
             CURLOPT_POSTFIELDS => (is_array($content) || !empty($content) ? $content : ''),
             CURLOPT_USERAGENT => Auth::generateUserAgent(),
             CURLOPT_HTTPHEADER => [Auth::generateHeader()]

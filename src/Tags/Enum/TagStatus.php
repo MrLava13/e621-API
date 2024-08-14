@@ -24,4 +24,4 @@ enum TagStatus
             TagStatus::QUEUED => 'queued'
         };
     }
-};
+}

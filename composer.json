@@ -4,6 +4,9 @@
     "require": {
         "php": ">=8.1.0"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.0"
+    },
     "suggest": {
         "ext-curl": "Improved web access"
     },
@@ -11,5 +14,13 @@
         "psr-4": {
             "E621api\\": "src"
         }
+    },
+    "scripts": {
+        "check": [
+            "\"vendor/bin/phpcs\" --standard=PSR12 src/"
+        ],
+        "format-fix": [
+            "\"vendor/bin/phpcbf\" --standard=PSR12 src/"
+        ]
     }
 }

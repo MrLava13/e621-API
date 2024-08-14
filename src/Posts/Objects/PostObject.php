@@ -33,4 +33,4 @@ class PostObject extends BasicArrayObject
         }
         return $out;
     }
-};
+}

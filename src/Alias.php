@@ -20,7 +20,7 @@ class Alias
 
     /**
      * Fetch the page of tags
-     * 
+     *
      * @param int $page The page number to get the tags from
      * @return AliasesReturnObject
      */
@@ -32,7 +32,7 @@ class Alias
 
     /**
      * Fetch a listing of tags from a given id
-     * 
+     *
      * @param int $id The id to search from
      * @param Alignment $sort The method of searching, `a` for after, or `b` for before
      * @param array $options The options to search for

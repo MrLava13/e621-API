@@ -6,7 +6,8 @@ use E621api\BaseObjects\BasicSearchObject;
 use E621api\Tags\Enum\TagOrder;
 use E621api\Tags\Enum\TagStatus;
 
-class AliasSearch extends BasicSearchObject {
+class AliasSearch extends BasicSearchObject
+{
     protected ?string $name_matches;
     protected ?string $antecedent_name;
     protected ?string $consequent_name;
@@ -16,4 +17,4 @@ class AliasSearch extends BasicSearchObject {
     protected ?string $approver_name;
     protected ?TagStatus $status;
     protected ?TagOrder $order;
-};
+}

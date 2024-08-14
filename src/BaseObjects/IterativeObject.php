@@ -14,7 +14,9 @@ class IterativeObject implements Iterator, ArrayAccess
      * @param array<int,BasicArrayObject> $array
      */
 
-    public function __construct(protected array $array) {}
+    public function __construct(protected array $array)
+    {
+    }
 
 
     public function __toString(): string
@@ -24,7 +26,7 @@ class IterativeObject implements Iterator, ArrayAccess
 
     /**
      * Gets the amount of posts/items that are in the output
-     * 
+     *
      * @return int
      */
 
@@ -38,33 +40,39 @@ class IterativeObject implements Iterator, ArrayAccess
 
     /**
      * Returns the smallest ID
-     * 
+     *
      * @return int|false
      */
 
     public function getSID()
     {
-        if (!isset($this->array[0]['id']))
+        if (!isset($this->array[0]['id'])) {
             return false;
-        foreach ($this->array as $v)
-            if (!isset($out) || $v['id'] < $out)
+        }
+        foreach ($this->array as $v) {
+            if (!isset($out) || $v['id'] < $out) {
                 $out = $v['id'];
+            }
+        }
         return $out;
     }
 
     /**
      * Returns the largest ID
-     * 
+     *
      * @return int|false
      */
 
     public function getLID()
     {
-        if (!isset($this->array[0]['id']))
+        if (!isset($this->array[0]['id'])) {
             return false;
-        foreach ($this->array as $v)
-            if (!isset($out) || $v['id'] > $out)
+        }
+        foreach ($this->array as $v) {
+            if (!isset($out) || $v['id'] > $out) {
                 $out = $v['id'];
+            }
+        }
         return $out;
     }
 
@@ -104,7 +112,11 @@ class IterativeObject implements Iterator, ArrayAccess
     public function offsetGet(mixed $offset): mixed
     {
         if (!isset($this->array[$offset])) {
-            throw new Exception('Attempted to access: "' . $offset . '" in a user and the given key was not found in the array.');
+            throw new Exception(
+                'Attempted to access: "'
+                    . $offset
+                    . '" in a user and the given key was not found in the array.'
+            );
         }
         return $this->array[$offset];
     }

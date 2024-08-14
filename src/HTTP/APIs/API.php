@@ -10,8 +10,8 @@ interface API
      * @param string $url
      * @param Method $method
      * @param array $content
-     * @return string 
+     * @return string
      */
 
-    public function call(string $url, Method $method, array $content = []) : string;
+    public function call(string $url, Method $method, array $content = []): string;
 }

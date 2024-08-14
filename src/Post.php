@@ -29,7 +29,8 @@ class Post
     }
 
     /**
-     * Upload a post to E621api, it might work, might not... It has **not** been tested yet, but should work if I had read the documentaion correctly
+     * Upload a post to E621api, it might work, might not...
+     * It has **not** been tested yet, but should work if I had read the documentaion correctly
      */
 
     public static function create(array $data): PostResponce
@@ -67,12 +68,18 @@ class Post
             : $data['tags']);
 
         if (isset($data['file'])) {
-            $post['file'] = curl_file_create(realpath($data['file']), \mime_content_type($data['file']), basename($data['file'])); // TODO: make better
+            // TODO: make better
+            $post['file'] = curl_file_create(
+                realpath($data['file']),
+                \mime_content_type($data['file']),
+                basename($data['file'])
+            );
             if (!isset($post['md5_confirmation'])) {
                 $post['md5_confirmation'] = md5_file($data['file']);
             }
-        } elseif (!isset($post['direct_url']))
+        } elseif (!isset($post['direct_url'])) {
             throw new Exception('No file was supplied...');
+        }
 
         $out = [];
         foreach ($post as $name => $value) {
@@ -90,9 +97,11 @@ class Post
     {
         $old = (self::fromID($id))->getArray();
 
-        foreach (self::CONVERT as $o => $n)
-            if (isset($data[$o]))
+        foreach (self::CONVERT as $o => $n) {
+            if (isset($data[$o])) {
                 $data[$n] = $data[$o];
+            }
+        }
 
         $post = [
             'old_parent_id'     => $old['relationships']['parent_id'],

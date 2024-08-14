@@ -10,7 +10,9 @@ class BasicArrayObject implements ArrayAccess
     /**
      * @param array<string,mixed> $data
      */
-    function __construct(protected array $data) {}
+    public function __construct(protected array $data)
+    {
+    }
 
     public function print()
     {
@@ -32,7 +34,11 @@ class BasicArrayObject implements ArrayAccess
     public function offsetGet(mixed $offset): mixed
     {
         if (!isset($this->data[$offset])) {
-            throw new Exception('Attempted to access: "' . $offset . '" in a user and the given key was not found in the array.');
+            throw new Exception(
+                'Attempted to access: "'
+                . $offset
+                . '" in a user and the given key was not found in the array.'
+            );
         }
         return $this->data[$offset];
     }
@@ -40,4 +46,4 @@ class BasicArrayObject implements ArrayAccess
     {
         unset($this->data[$offset]);
     }
-};
+}

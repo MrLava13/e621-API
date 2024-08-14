@@ -23,7 +23,12 @@ class PostSearch extends BasicSearchObject
     {
         if ($this->order_asc = $asc && isset($order)) {
             match ($order) {
-                PostOrder::ID, PostOrder::RANDOM, PostOrder::LANDSCAPE, PostOrder::PORTRAIT => throw new ValueError('Invalid ASC on given order')
+                PostOrder::ID,
+                PostOrder::RANDOM,
+                PostOrder::LANDSCAPE,
+                PostOrder::PORTRAIT => throw new ValueError(
+                    'Invalid ASC on given order'
+                )
             };
         }
         $this->order = $order;
@@ -49,4 +54,4 @@ class PostSearch extends BasicSearchObject
 
         return $output;
     }
-};
+}

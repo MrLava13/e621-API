@@ -2,5 +2,6 @@
 
 namespace E621api\Tags\Objects;
 
-
-class AliasObject extends TagObject {};
+class AliasObject extends TagObject
+{
+}
