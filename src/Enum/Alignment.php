@@ -1,6 +1,6 @@
 <?php
 
-namespace e621;
+namespace e621\Enum;
 
 enum Alignment {
     case After;

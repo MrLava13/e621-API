@@ -7,10 +7,11 @@ use e621\HTTP\Method;
 interface API
 {
     /**
+     * @param string $url
      * @param Method $method
-     * @param string|array $content
-     * @return string|false 
+     * @param array $content
+     * @return string 
      */
 
-    public function call(string $url, Method $method, $content = []);
+    public function call(string $url, Method $method, array $content = []) : string;
 }

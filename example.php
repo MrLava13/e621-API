@@ -2,19 +2,21 @@
 
 use e621\Auth;
 use e621\HTTPException;
-use e621\Posts\Posts;
+use e621\Posts;
+use e621\Posts\PostSearch;
 
 require __DIR__ . '/vendor/autoload.php';
 // Auth::login('username', 'api_key');
 
 
 try {
-    $info = Posts::page(1, options: [
-        'tags' => [
-            'anthro'
-        ],
-        'limit' => 10
-    ]);
+    $info = Posts::getResults(
+        PostSearch::make()
+            ->setTags([
+                'anthro'
+            ])
+            ->setLimit(10)
+    );
 
     foreach ($info as $post) {
         echo $post['id'] . PHP_EOL;

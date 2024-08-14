@@ -7,10 +7,10 @@ use Exception;
 
 class BasicArrayObject implements ArrayAccess
 {
-
-    function __construct(protected array $data)
-    {
-    }
+    /**
+     * @param array<string,mixed> $data
+     */
+    function __construct(protected array $data) {}
 
     public function print()
     {

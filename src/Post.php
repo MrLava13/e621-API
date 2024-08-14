@@ -1,11 +1,11 @@
 <?php
 
-namespace e621\Posts;
+namespace e621;
 
 use e621\HTTP\HTTP;
 use e621\HTTP\Method;
 use e621\Posts\Objects\PostObject;
-use e621\Posts\Objects\PostsReturnObject;
+use e621\Posts\Objects\PostResponce;
 use Exception;
 
 class Post
@@ -22,11 +22,17 @@ class Post
             'reason' => 'edit_reason'
         ];
 
+
+    public static function fromID(int $id): PostObject
+    {
+        return new PostObject(HTTP::fetch(self::URIS['post'] . $id . '.json', Method::GET));
+    }
+
     /**
      * Upload a post to e621, it might work, might not... It has **not** been tested yet, but should work if I had read the documentaion correctly
      */
 
-    public static function create(array $data): PostsReturnObject
+    public static function create(array $data): PostResponce
     {
         if (count(array_diff_key(['tags' => null, 'rating' => null], $data)) !== 0) {
             throw new Exception('Missing required keys');
@@ -73,19 +79,14 @@ class Post
             $out['upload[' . $name . ']'] = $value;
         }
 
-        return new PostsReturnObject(HTTP::fetch(self::URIS['upload'], Method::POST, $post));
-    }
-
-    public static function fromID(int $id): PostObject
-    {
-        return new PostObject(HTTP::fetch(self::URIS['post'] . $id . '.json', Method::GET));
+        return new PostResponce(HTTP::fetch(self::URIS['upload'], Method::POST, $post));
     }
 
     /**
      * TODO: Only make it update the new keys
      */
 
-    public static function update(int $id, array $data): PostsReturnObject
+    public static function update(int $id, array $data): PostResponce
     {
         $old = (self::fromID($id))->getArray();
 
@@ -110,6 +111,6 @@ class Post
                 //'has_embedded_notes'
             ]))
         );
-        return new PostsReturnObject(HTTP::fetch(self::URIS['post'] . '.json', Method::PATCH, $post));
+        return new PostResponce(HTTP::fetch(self::URIS['post'] . '.json', Method::PATCH, $post));
     }
 }

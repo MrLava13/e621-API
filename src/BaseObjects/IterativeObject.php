@@ -11,7 +11,7 @@ class IterativeObject implements Iterator, ArrayAccess
     protected int $index = 0;
 
     /**
-     * @var array<BasicArrayObject>
+     * @param array<int,BasicArrayObject> $array
      */
 
     public function __construct(protected array $array) {}

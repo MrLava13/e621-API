@@ -6,17 +6,24 @@ use e621\Auth;
 use e621\HTTP\Method;
 use e621\HTTPException;
 
-use function e621\HTTP\methodToString;
-
 class CURL implements API
 {
-    private static $curl;
+    private $curl;
 
-    public function call(string $url, Method $method, $content = [])
+    public function __construct()
     {
-        if (!isset(self::$curl)) self::$curl = curl_init();
-        $m = methodToString($method);
-        curl_setopt_array(self::$curl, [
+        $this->curl = curl_init();
+    }
+
+    public function __destruct()
+    {
+        curl_close($this->curl);
+    }
+
+    public function call(string $url, Method $method, array $content = []): string
+    {
+        $m = Method::methodToString($method);
+        curl_setopt_array($this->curl, [
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_CUSTOMREQUEST => $m,
@@ -26,8 +33,8 @@ class CURL implements API
             CURLOPT_USERAGENT => Auth::generateUserAgent(),
             CURLOPT_HTTPHEADER => [Auth::generateHeader()]
         ]);
-        $out = curl_exec(self::$curl);
-        switch ($code = curl_getinfo(self::$curl, CURLINFO_HTTP_CODE)) {
+        $out = curl_exec($this->curl);
+        switch ($code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE)) {
             case 200: // All good
             case 204: // For PATCH
                 return $out;
